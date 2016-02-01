@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 
 /**
@@ -59,6 +60,17 @@ public class Drivetrain extends Subsystem {
     private boolean isQuickTurn = false;
     private boolean isStraight = false;
     private int counter1 = 0;
+    
+    NetworkTable table;
+    boolean isCastlePresent = false;
+    double castleCenter = 0;
+    double distance = 0;
+    
+    
+    
+    public Drivetrain () {
+    	table = NetworkTable.getTable("SmartDashboard");
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -361,5 +373,26 @@ public class Drivetrain extends Subsystem {
         // Set the default command for a subsystem here.
          setDefaultCommand(new Drive());
     }
+    
+    
+    public boolean isCastlePresent(){
+    	if(table.getNumber("BLOB_COUNT", 0.0) != 0){
+    		isCastlePresent = true;
+    	}
+    	else{
+    		isCastlePresent = false;
+    	}
+    	
+    	return isCastlePresent;
+    }
+    public double getCastleCenter(){
+    	castleCenter = (table.getNumber("X1", 0.0) + table.getNumber("X2", 0.0) )/2;
+    	return castleCenter;
+    }
+    public double getDistance(){
+    	distance = table.getNumber("DEPTH", 0.0);
+    	return distance;
+    }
+    
 }
 

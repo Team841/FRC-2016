@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc841.Reptar.commands.*;
 import org.usfirst.frc841.Reptar.subsystems.Drivetrain;
 import org.usfirst.frc841.Reptar.subsystems.Hook;
@@ -105,6 +107,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        this.updateDriveStation();
     }
 
     /**
@@ -112,5 +115,12 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    private void updateDriveStation() {
+    	SmartDashboard.putString("DB/String 0","Castle? " + Robot.drivetrain.isCastlePresent() ); 
+    	SmartDashboard.putString("DB/String 1","Castle Center: " + Robot.drivetrain.getCastleCenter());
+    	SmartDashboard.putString("DB/String 2","Distance " + Robot.drivetrain.getDistance());
+    	   
+  
     }
 }
