@@ -12,6 +12,7 @@
 package org.usfirst.frc841.Reptar;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -100,14 +101,25 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Robot.drivetrain.initEncoder();
     }
-
+    
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         this.updateDriveStation();
+        /*
+        System.out.println(Timer.getFPGATimestamp() + "," + 
+        		Robot.drivetrain.getRightEncoderDistance() + "," + 
+        		Robot.drivetrain.getLeftEncoderDistance() + "," + 
+        		Robot.drivetrain.getRightSpeed() + "," + 
+        		Robot.drivetrain.getLeftSpeed()        		
+        		);
+        	
+        */
+        
     }
 
     /**
@@ -117,10 +129,11 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     private void updateDriveStation() {
-    	SmartDashboard.putString("DB/String 0","Castle? " + Robot.drivetrain.isCastlePresent() ); 
-    	SmartDashboard.putString("DB/String 1","Castle Center: " + Robot.drivetrain.getCastleCenter());
-    	SmartDashboard.putString("DB/String 2","Distance " + Robot.drivetrain.getDistance());
-    	   
+    	//SmartDashboard.putString("DB/String 0","Castle? " + Robot.drivetrain.isCastlePresent() ); 
+    	//SmartDashboard.putString("DB/String 1","Castle Center: " + Robot.drivetrain.getCastleCenter());
+    	//SmartDashboard.putString("DB/String 2","Distance " + Robot.drivetrain.getDistance());
+    	
+  
   
     }
 }
