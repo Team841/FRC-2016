@@ -117,7 +117,6 @@ public class Robot extends IterativeRobot {
         		Robot.drivetrain.getRightSpeed() + "," + 
         		Robot.drivetrain.getLeftSpeed()        		
         		);
-        	
         */
         
     }
@@ -129,11 +128,8 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     private void updateDriveStation() {
-    	//SmartDashboard.putString("DB/String 0","Castle? " + Robot.drivetrain.isCastlePresent() ); 
-    	//SmartDashboard.putString("DB/String 1","Castle Center: " + Robot.drivetrain.getCastleCenter());
-    	//SmartDashboard.putString("DB/String 2","Distance " + Robot.drivetrain.getDistance());
-    	
-  
-  
+    //	SmartDashboard.putString("DB/String 0","Castle? " + Robot.drivetrain.isCastlePresent() ); 
+    //	SmartDashboard.putString("DB/String 1","Castle Center: " + Robot.drivetrain.getCastleCenter());
+    //	SmartDashboard.putString("DB/String 2","Distance " + Robot.drivetrain.getDistance());
     }
 }

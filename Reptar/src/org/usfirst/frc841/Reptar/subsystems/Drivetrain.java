@@ -15,8 +15,10 @@ import java.sql.Driver;
 
 import org.usfirst.frc841.Reptar.RobotMap;
 import org.usfirst.frc841.Reptar.commands.*;
-import org.usfirst.frc841.lib.FalconPathPlanner;
-import org.usfirst.frc841.lib.TrajectoryTestPath;
+import org.usfirst.frc841.lib.PID.PIDControlLoop;
+import org.usfirst.frc841.lib.PathPlanner.FalconPathPlanner;
+import org.usfirst.frc841.lib.PathPlanner.PathFollower;
+
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -31,6 +33,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -236,8 +239,7 @@ public class Drivetrain extends Subsystem {
 	double robotTrackWidth = 2.167; //distance between left and right wheels, feet
 
 	FalconPathPlanner path  = new FalconPathPlanner(waypoints);
-	
-    
+	PathFollower automode;
     //Variables used for Cheesy Poofs Drive Style
     
     boolean isHighGear = false;
@@ -260,7 +262,7 @@ public class Drivetrain extends Subsystem {
     Notifier controlLoopTimer;
  
     
-    private double period = .1; //Seconds
+    private double period = .2; //Seconds
     public boolean isPathFollowEnable = false;
     public boolean isPathFinished = false;
     
@@ -269,8 +271,48 @@ public class Drivetrain extends Subsystem {
     public double[][] distleft;
     public double[][] distright;
     
+ 
+    public class CLoop extends PIDControlLoop{
+		//Create a object the same time of the subsystem used. 
+		Drivetrain test;
+		
+		//Take in the class and variables needed by the PID loop.
+		public CLoop(Drivetrain test,double[] X, double[] Y, long sampleTime) {
+			super(X, Y,sampleTime);
+			this.test = test;
+			// TODO Auto-generated constructor stub
+		}
+		//This is where  we override the PID methodes with the Subsystem Methodes
+	@Override
+		public void SetOutput(double value){
+		if(!test.isCastlePresent()){
+			test.cloop.enablePID = false;
+			test.SetLeftRight(0, 0);
+		}
+		else{
+			test.SetLeftRight(value,value);
+			//System.out.println("output: "+ value);
+			}
+		}
+		@Override
+		public double getSensorReading(){
+			return test.getCastleCenter();
+		}
+		@Override
+		public void update(){
+			SmartDashboard.putString("DB/String 1","Castle Center: " + this.test.getCastleCenter());
+		}
+		
+	}
+    //PID Variable
+    public Drivetrain.CLoop cloop;
+    
+    double x[]= {1,2,3};
+    double y[] = {0,0,0};
     public Drivetrain () {
-    	
+    	//Calculate trajectory paths for Velocity, Acceleration, and distance over time
+    	automode = new PathFollower(waypoints,totalTime,timeStep, robotTrackWidth);
+    	    
     	table = NetworkTable.getTable("SmartDashboard");
     	path.calculate(totalTime, timeStep, robotTrackWidth);
 		double[][] accleft = new double [path.smoothCenterVelocity.length][2];
@@ -303,12 +345,17 @@ public class Drivetrain extends Subsystem {
     	
     	controlLoopTimer = new Notifier(new loop(this,accleft, accright,distleft,distright));
     	controlLoopTimer.startPeriodic(period);
+    	cloop = new Drivetrain.CLoop(this, x, y, (long) Math.abs( period * 100));
+		cloop.setTunings(.0030, 0.001, .00020);
+		cloop.SetOutputLimits(-1, 1);
+		cloop.Setpoint = 160;
+		cloop.enablePID = false;
     	
-    
-    }
+    } 
     class loop implements Runnable{
     	private Drivetrain drivetrain;
     	int counter = 0;
+    	//int cnt =0;
     	public double[][] accleft;
     	public double[][] accright;
     	public double[][] distleft;
@@ -332,6 +379,8 @@ public class Drivetrain extends Subsystem {
     	}
 		@Override
 		public void run() {
+			//System.out.println(drivetrain.automode.path.smoothLeftVelocity[cnt][1]+ " " + drivetrain.path.smoothLeftVelocity[cnt][1]);
+			//cnt++;
 			if(drivetrain.isPathFollowEnable){
 				errorL = distleft[counter][1] - Math.abs(drivetrain.getLeftEncoderDistance());
 				errorR = distright[counter][1] - Math.abs(drivetrain.getRightEncoderDistance());
@@ -550,7 +599,7 @@ public class Drivetrain extends Subsystem {
             if (isHighGear) {
                 sensitivity = 1.0;
             } else {
-                sensitivity = 0.5;
+                sensitivity = 0.10;
                 
             }
             angularPower = wheel;
