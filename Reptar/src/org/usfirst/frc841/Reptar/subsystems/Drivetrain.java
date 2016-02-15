@@ -360,6 +360,10 @@ public class Drivetrain extends Subsystem {
     	public double[][] accright;
     	public double[][] distleft;
     	public double[][] distright;
+    	public double[][] jerkleft;
+    	public double[][] jerkright;
+    	public double[][] snapleft;
+    	public double[][] snapright;
     	double setpointL =0;
     	double errorL = 0;
     	double error_derivL = 0;
@@ -369,12 +373,18 @@ public class Drivetrain extends Subsystem {
     	double error_derivR = 0;
     	double error_lastR =0;
     	
-    	public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright){
+    	//public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright,
+    		//	double[][] jerkleft, double[][] jerkright, double[][] snapleft, double[][] snapright){
+    	public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright) {	
     		this.drivetrain = drivetrain;
     		this.accleft= accleft;
     		this.accright= accright;
     		this.distleft =distleft;
     		this.distright= distright;
+    		this.jerkleft = jerkleft;
+    		this.jerkright = jerkright;
+    		this.snapleft = snapleft;
+    		this.snapright = snapright;
     		
     	}
 		@Override
@@ -392,6 +402,20 @@ public class Drivetrain extends Subsystem {
 					+ 1/3.5 * .55 * accleft[counter][1] + 2/3 * errorL, 
 					-0.9 *1/5.3 * drivetrain.path.smoothRightVelocity[counter][1]
 							- 1/3.5 * .6 * accright[counter][1] - 2/3 * errorR);
+				
+				//implemented jerk and snap
+				/*drivetrain.SetLeftRight(
+				        0.86 * 1/5.4 * drivetrain.path.smoothLeftVelocity[counter][1]
+						+ 1/3.5 * 0.55 * accleft[counter][1] 
+						+ 1/3.5 * 0.55 * jerkleft[counter][1]
+						+ 1/3.5 * 0.55 * snapleft[counter][1]
+						+ 2/3 * errorL, 
+						-0.9 * 1/5.3 * drivetrain.path.smoothRightVelocity[counter][1]
+						- 1/3.5 * 0.6 * accright[counter][1]
+						- 1/3.5 * 0.6 * jerkright[counter][1]
+						- 1/3.5 * 0.6 * snapright[counter[1]
+						- 2/3 * errorR);
+				*/
 				
 				/*drivetrain.SetLeftRight(0.9*1/5.4 * drivetrain.leftVelocity[counter] 
 						+ 1/3.5 * .8 * drivetrain.leftAcc[counter], 
