@@ -262,7 +262,7 @@ public class Drivetrain extends Subsystem {
     Notifier controlLoopTimer;
  
     
-    private double period = .1; //Seconds
+    private double period = .2; //Seconds
     public boolean isPathFollowEnable = false;
     public boolean isPathFinished = false;
     
@@ -286,11 +286,13 @@ public class Drivetrain extends Subsystem {
 	@Override
 		public void SetOutput(double value){
 		if(!test.isCastlePresent()){
-			test.cloop.enablePID=false;
+			test.cloop.enablePID = false;
 			test.SetLeftRight(0, 0);
 		}
+		else{
 			test.SetLeftRight(value,value);
-		System.out.println("output: "+ value);
+			//System.out.println("output: "+ value);
+			}
 		}
 		@Override
 		public double getSensorReading(){
@@ -303,7 +305,7 @@ public class Drivetrain extends Subsystem {
 		
 	}
     //PID Variable
-    Drivetrain.CLoop cloop;
+    public Drivetrain.CLoop cloop;
     
     double x[]= {1,2,3};
     double y[] = {0,0,0};
@@ -344,12 +346,12 @@ public class Drivetrain extends Subsystem {
     	controlLoopTimer = new Notifier(new loop(this,accleft, accright,distleft,distright));
     	controlLoopTimer.startPeriodic(period);
     	cloop = new Drivetrain.CLoop(this, x, y, (long) Math.abs( period * 100));
-		cloop.setTunings(.004, 0.0002, .0003);
+		cloop.setTunings(.0030, 0.001, .00020);
 		cloop.SetOutputLimits(-1, 1);
 		cloop.Setpoint = 160;
 		cloop.enablePID = false;
     	
-    }
+    } 
     class loop implements Runnable{
     	private Drivetrain drivetrain;
     	int counter = 0;
@@ -358,6 +360,10 @@ public class Drivetrain extends Subsystem {
     	public double[][] accright;
     	public double[][] distleft;
     	public double[][] distright;
+    	public double[][] jerkleft;
+    	public double[][] jerkright;
+    	public double[][] snapleft;
+    	public double[][] snapright;
     	double setpointL =0;
     	double errorL = 0;
     	double error_derivL = 0;
@@ -367,12 +373,18 @@ public class Drivetrain extends Subsystem {
     	double error_derivR = 0;
     	double error_lastR =0;
     	
-    	public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright){
+    	//public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright,
+    		//	double[][] jerkleft, double[][] jerkright, double[][] snapleft, double[][] snapright){
+    	public loop(Drivetrain drivetrain, double[][] accleft, double[][] accright,double[][] distleft, double[][] distright) {	
     		this.drivetrain = drivetrain;
     		this.accleft= accleft;
     		this.accright= accright;
     		this.distleft =distleft;
     		this.distright= distright;
+    		this.jerkleft = jerkleft;
+    		this.jerkright = jerkright;
+    		this.snapleft = snapleft;
+    		this.snapright = snapright;
     		
     	}
 		@Override
@@ -391,11 +403,26 @@ public class Drivetrain extends Subsystem {
 					-0.9 *1/5.3 * drivetrain.path.smoothRightVelocity[counter][1]
 							- 1/3.5 * .6 * accright[counter][1] - 2/3 * errorR);
 				
+				//implemented jerk and snap, need to figure out the attenuation
+				/*drivetrain.SetLeftRight(
+				        0.86 * 1/5.4 * drivetrain.path.smoothLeftVelocity[counter][1]
+						+ 1/3.5 * 0.55 * accleft[counter][1] 
+						+ 1/3.5 * 0.55 * jerkleft[counter][1]
+						+ 1/3.5 * 0.55 * snapleft[counter][1]
+						+ 2/3 * errorL, 
+						-0.9 * 1/5.3 * drivetrain.path.smoothRightVelocity[counter][1]
+						- 1/3.5 * 0.6 * accright[counter][1]
+						- 1/3.5 * 0.6 * jerkright[counter][1]
+						- 1/3.5 * 0.6 * snapright[counter[1]
+						- 2/3 * errorR);
+				*/
+				
 				/*drivetrain.SetLeftRight(0.9*1/5.4 * drivetrain.leftVelocity[counter] 
 						+ 1/3.5 * .8 * drivetrain.leftAcc[counter], 
 					0.9*-1/5.3 * drivetrain.rightVelocity[counter]
 					- 1/3.5 * .8 * drivetrain.rightAcc[counter]);
 				*/
+				
 				//System.out.println(drivetrain.leftVelocity[counter]);
 				counter++;
 				error_lastL = errorL;
@@ -597,7 +624,7 @@ public class Drivetrain extends Subsystem {
             if (isHighGear) {
                 sensitivity = 1.0;
             } else {
-                sensitivity = 0.5;
+                sensitivity = 0.10;
                 
             }
             angularPower = wheel;

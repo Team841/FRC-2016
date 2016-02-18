@@ -70,7 +70,7 @@ public class OI {
         driver = new Joystick(0);
         
         autoaim = new JoystickButton(driver, 12);
-        autoaim.whileHeld(new AutonomousCommand());
+        autoaim.whileHeld(new AutoCenter());
         stopquickturn = new JoystickButton(driver, 6);
         stopquickturn.whenReleased(new stopQuickTurn());
         lowGear = new JoystickButton(driver, 2);

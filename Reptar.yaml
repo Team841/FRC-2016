@@ -18,7 +18,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: &id003 [PWMOutput]
-          value: '10'
+          value: '0'
       Base: Speed Controller
       Name: LeftDrive1
     - Children: []
@@ -34,7 +34,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id003
-          value: '11'
+          value: '1'
       Base: Speed Controller
       Name: LeftDrive2
     - Children: []
@@ -50,7 +50,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id003
-          value: '8'
+          value: '2'
       Base: Speed Controller
       Name: RightDrive1
     - Children: []
@@ -66,7 +66,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id003
-          value: '9'
+          value: '3'
       Base: Speed Controller
       Name: RightDrive2
     - Children: []
@@ -552,10 +552,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Drivetrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id016 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id016
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command

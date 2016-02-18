@@ -403,7 +403,7 @@ public class Drivetrain extends Subsystem {
 					-0.9 *1/5.3 * drivetrain.path.smoothRightVelocity[counter][1]
 							- 1/3.5 * .6 * accright[counter][1] - 2/3 * errorR);
 				
-				//implemented jerk and snap
+				//implemented jerk and snap, need to figure out the attenuation
 				/*drivetrain.SetLeftRight(
 				        0.86 * 1/5.4 * drivetrain.path.smoothLeftVelocity[counter][1]
 						+ 1/3.5 * 0.55 * accleft[counter][1] 
@@ -422,6 +422,7 @@ public class Drivetrain extends Subsystem {
 					0.9*-1/5.3 * drivetrain.rightVelocity[counter]
 					- 1/3.5 * .8 * drivetrain.rightAcc[counter]);
 				*/
+				
 				//System.out.println(drivetrain.leftVelocity[counter]);
 				counter++;
 				error_lastL = errorL;
