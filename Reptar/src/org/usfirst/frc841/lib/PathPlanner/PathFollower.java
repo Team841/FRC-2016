@@ -48,7 +48,7 @@ public class PathFollower {
 	   for (int i=0; i < (path.smoothLeftVelocity.length - 1); i++){
 		   //left side acceleration vs time
 		   accleft[i+1][1] = (path.smoothLeftVelocity[i+1][1] - path.smoothLeftVelocity[i][1])/timeStep;
-		   accleft[i+1][0] = path.smoothLeftVelocity[i][0];
+		   accleft[i][0] = path.smoothLeftVelocity[i][0];
 		   
 		   //left side distance vs time
 		   distleft[i+1][1] = path.smoothLeftVelocity[i][1] * timeStep + distleft[i][1];
@@ -56,7 +56,7 @@ public class PathFollower {
 		
 		   //right side acceleration vs time
 		   accright[i+1][1] = (path.smoothRightVelocity[i+1][1]-path.smoothRightVelocity[i][1])/timeStep;
-		   accright[i+1][0] = path.smoothRightVelocity[i][0];
+		   accright[i][0] = path.smoothRightVelocity[i][0];
 		   
 		   //right side distance vs time
 		   distright[i+1][1] = path.smoothRightVelocity[i][1]* timeStep + distright[i][1];
@@ -80,10 +80,10 @@ public class PathFollower {
 	   //the previous calculated acceleration.
 	   for (int i = 0; i < path.smoothLeftVelocity.length-1; i++) {
 		   jerkleft[i+1][1] = (accleft[i+1][1] - accleft[i][1]) / timeStep;
-		   jerkleft[i+1][0] = path.smoothLeftVelocity[i][0];
+		   jerkleft[i][0] = path.smoothLeftVelocity[i][0];
 		   
 		   jerkright[i+1][1] = (accright[i+1][1] - accright[i][1]) / timeStep;
-		   jerkright[i+1][0] = path.smoothRightVelocity[i][0];		   
+		   jerkright[i][0] = path.smoothRightVelocity[i][0];		   
 	   }
 	   
 	   jerkleft[0][1] = 0;
