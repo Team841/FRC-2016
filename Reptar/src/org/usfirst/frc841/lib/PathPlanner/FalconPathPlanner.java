@@ -285,7 +285,7 @@ public class FalconPathPlanner
 	 * BigO: order N
 	 * @param smoothPath
 	 * @param timeStep
-	 * @return
+	 * @return velocity
 	 */
 	double[][] velocity(double[][] smoothPath, double timeStep)
 	{
@@ -383,7 +383,7 @@ public class FalconPathPlanner
 	 * BigO: Order N
 	 * @param origVelocity
 	 * @param smoothVelocity
-	 * @return
+	 * @return errorsum
 	 */
 	private double[] errorSum(double[][] origVelocity, double[][] smoothVelocity)
 	{
