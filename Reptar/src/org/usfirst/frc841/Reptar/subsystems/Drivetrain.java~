@@ -345,7 +345,7 @@ public class Drivetrain extends Subsystem {
     	controlLoopTimer.startPeriodic(period);
    
     	cloop = new Drivetrain.CLoop(this, x, y, (long) Math.abs( period * 100));
-		cloop.setTunings(.0030, 0.001, .00020);
+		cloop.setTunings(.0015, 0.002, .00023);
 		cloop.SetOutputLimits(-1, 1);
 		cloop.updateSetpoint(160);
 		//cloop.enablePID = false;
