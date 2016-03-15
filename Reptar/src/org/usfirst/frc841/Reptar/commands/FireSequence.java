@@ -47,7 +47,7 @@ public class FireSequence extends CommandGroup {
           addSequential(new ActuateShooter(true));
           addSequential(new WaitCommand(.2));
           addSequential(new SetShooterSpeeds(30, 30));
-          addSequential(new WaitCommand(1.5));
+          //addSequential(new WaitCommand(1.5));
           addSequential(new HopperPostion(true));
           addSequential(new WaitCommand(0.5));
           addSequential(new ActuateShooter(false));

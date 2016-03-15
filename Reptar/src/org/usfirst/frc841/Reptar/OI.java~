@@ -82,12 +82,11 @@ public class OI {
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("FireSequence", new FireSequence());
         SmartDashboard.putData("HopperPostion: Lift", new HopperPostion(true));
         SmartDashboard.putData("HopperPostion: Intake", new HopperPostion(false));
         SmartDashboard.putData("Actuate Shooter: ShootPosition", new ActuateShooter(true));
         SmartDashboard.putData("Actuate Shooter: RetractPosition", new ActuateShooter(false));
-        SmartDashboard.putData("SetShooterSpeeds: ShootClose", new SetShooterSpeeds(62, 18.75));
+        SmartDashboard.putData("SetShooterSpeeds: ShootClose", new SetShooterSpeeds(62, 25));
         SmartDashboard.putData("SetShooterSpeeds: stop", new SetShooterSpeeds(0, 0));
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("Drive", new Drive());
