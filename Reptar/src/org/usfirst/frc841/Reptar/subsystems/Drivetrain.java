@@ -38,7 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
- *
+ *This Defines the Drivetrain subsystem. 
  */
 public class Drivetrain extends Subsystem {
 	
@@ -255,6 +255,7 @@ public class Drivetrain extends Subsystem {
     private boolean isStraight = false;
     private int counter1 = 0;
     
+    //Network table variable for reading camera and Lidar
     NetworkTable table;
     boolean isCastlePresent = false;
     double castleCenter = 0;

@@ -2,7 +2,12 @@ package org.usfirst.frc841.lib.PID;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ * Team 841 version of the PID loop with Anti-Integral Wind-up, Anti-Derivative kick,
+ * and feed-forward implementation 
+ * @author Team841-P01
+ *
+ */
 public class PIDControlLoop {
 
 	// PID variables
@@ -50,8 +55,8 @@ public class PIDControlLoop {
 			b[i] = ffTableY[i] - slope[i] * ffTableX[i];
 		}
 
-		// Initialize Moving avarage of 5
-		averageError = new SMA(5);
+		// Initialize Moving average of 15
+		averageError = new SMA(15);
 
 		// SetsSampleTime
 		this.SampleTime = SampleTime;
@@ -71,7 +76,10 @@ public class PIDControlLoop {
 			mynew.setTunings(Tunings[0], Tunings[1], Tunings[2]);
 		}
 	}
-
+	/**
+	 * Class that implements the periodic task for PID Loop
+	 *
+	 */
 	class Update extends TimerTask {
 		private PIDControlLoop c;
 
@@ -89,14 +97,20 @@ public class PIDControlLoop {
 			if (enablePID) {
 				c.setOutput(c.Compute(c.getSensorReading()));
 			} else {
+				//If disabled then clear PID variables for a fresh start
 				lastInput = c.getSensorReading();
 				ITerm = 0;
+				averageError.clear();
 			}
 
 		}
 	}
 
-	// returns current ff value.
+	/**
+	 * This calculates the feed forward value from the feed forward table
+	 * @param input
+	 * @return feed forward for PID computation
+	 */
 	public double getFFValue(double input) {
 		// find current ff data;
 		double data = Math.ceil(input);
@@ -110,7 +124,12 @@ public class PIDControlLoop {
 		return (slope[ffpointer] * input + b[ffpointer]);
 	}
 
-	// Sets positive PID values
+	/**
+	 *  Sets PID tuning variables
+	 * @param Kp
+	 * @param Ki
+	 * @param Kd
+	 */
 	public void setTunings(double Kp, double Ki, double Kd) {
 		if (Kp > 0 || Ki > 0 || Kd > 0) {
 			double SampleTimeInSec = SampleTime / 1000;
@@ -127,7 +146,10 @@ public class PIDControlLoop {
 		}
 	}
 
-	// Sets Sample Time in milliseconds
+	/**
+	 * Set sample time in milliSeconds
+	 * @param NewSampleTime
+	 */
 	public void setSampleTime(double NewSampleTime) {
 		if (NewSampleTime > 0) {
 			double ratio = NewSampleTime / SampleTime;
@@ -140,7 +162,11 @@ public class PIDControlLoop {
 		}
 	}
 
-	// Sets Limit to Output
+	/**
+	 * Sets the limit for the PID output
+	 * @param Min
+	 * @param Max
+	 */
 	public void SetOutputLimits(double Min, double Max) {
 		if (Min < Max) {
 			outMin = Min;
@@ -164,7 +190,10 @@ public class PIDControlLoop {
 	 * input){ lastInput = input; ITerm = Output; if (ITerm > outMax){ ITerm =
 	 * outMax; } else if(ITerm < outMin){ ITerm = outMin; } }
 	 */
-	// Clears up all data from past PID loop
+
+	/**
+	 * Clears the PID variables for a fresh start
+	 */
 	public void initialize() {
 		lastInput = 0;
 		ITerm = 0;
@@ -172,7 +201,10 @@ public class PIDControlLoop {
 
 	}
 
-	// Set the PID output polarity
+	/**
+	 * Set The PID output polarity for a reverse or forward direction
+	 * @param Direction
+	 */
 	public void SetControllerDirection(boolean Direction) {
 		controllerDirection = Direction;
 	}
@@ -190,7 +222,7 @@ public class PIDControlLoop {
 		// update average
 		averageError.compute(error);
 		
-		//Calculate and upate Iterm and limit Iterm to prevent integral wind-up
+		//Calculate and update Iterm and limit Iterm to prevent integral wind-up
 		ITerm += (ki * error);
 		if (ITerm > outMax) {
 			ITerm = outMax;
@@ -214,7 +246,7 @@ public class PIDControlLoop {
 		lastInput = input;
 
 		//Gets average limit to see if PID is within range of error tolerance
-		if (Math.abs(averageError.currentAverage()) < Math.abs(Setpoint * 0.15)) {
+		if (Math.abs(averageError.currentAverage()) < Math.abs(Setpoint * 0.05)) {
 			isDestinationReached = true;
 		} else {
 			isDestinationReached = false;
@@ -267,21 +299,28 @@ public class PIDControlLoop {
 		return enablePID;
 	}
 
-	// This output method needs to be defined be the subclass for it to do
-	// anything
+	/**
+	 * This output method needs to be defined be the subsystem class for it to do anything
+	 * @param value
+	 */
 	public void setOutput(double value) {
 		System.out.println("Need to override the SetOutput Methode of PIDLoop to Work");
 
 	}
 
-	// This input method needs to be defined be the subclass for it to do
-	// anything
+	/**
+	 * This input method needs to be defined be the subsystem class for it to do anything. It is meant
+	 * to be overridden
+	 * @return sensor reading
+	 */
 	public double getSensorReading() {
-		System.out.println("Need to override tje getSensorReading of PIDLoop to Work");
+		System.out.println("Need to override the getSensorReading of PIDLoop to Work");
 		return 0;
 	}
 
-	// This method is meant to be overridden
+	/**
+	 * This method is meant to be overridden
+	 */
 	public void update() {
 
 	}

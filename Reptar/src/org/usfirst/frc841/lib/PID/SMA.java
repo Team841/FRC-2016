@@ -50,4 +50,10 @@ public class SMA {
         average = sum / values.size();
         return average;
     }
+    /**
+     * Clears the moving average
+     */
+    public void clear(){
+    	values.clear();
+    }
 }
