@@ -82,6 +82,7 @@ public class OI {
 
 
         // SmartDashboard Buttons
+        SmartDashboard.putData("Command Group 1", new CommandGroup1());
         SmartDashboard.putData("HopperPostion: Lift", new HopperPostion(true));
         SmartDashboard.putData("HopperPostion: Intake", new HopperPostion(false));
         SmartDashboard.putData("Actuate Shooter: ShootPosition", new ActuateShooter(true));

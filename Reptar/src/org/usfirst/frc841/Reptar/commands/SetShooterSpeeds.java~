@@ -68,10 +68,14 @@ public class SetShooterSpeeds extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooter.lowercloop.isDestinationReached()
+        
+    	return true;
+    	/*
+    	return Robot.shooter.lowercloop.isDestinationReached()
         		&& Robot.shooter.uppercloop.isDestinationReached()
         		|| (!Robot.shooter.lowercloop.isPIDEnabled()
         				&& !Robot.shooter.uppercloop.isPIDEnabled());
+    	*/
     }
 
     // Called once after isFinished returns true

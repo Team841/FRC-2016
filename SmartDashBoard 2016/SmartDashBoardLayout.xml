@@ -1,10 +1,31 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="HopperPostion: Lift" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="299" y="166"/>
+	</widget>
+	<widget field="FireSequence" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="266" y="427"/>
+	</widget>
+	<widget field="Actuate Shooter: RetractPosition" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="235" y="62"/>
+	</widget>
+	<widget field="Actuate Shooter: ShootPosition" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="241" y="129"/>
+	</widget>
+	<widget field="HopperPostion: Intake" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="277" y="204"/>
+	</widget>
+	<widget field="SetShooterSpeeds: ShootClose" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="369"/>
+	</widget>
+	<widget field="SetShooterSpeeds: stop" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="335"/>
+	</widget>
 	<widget field="X2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="314"/>
 	</widget>
 	<widget field="FollowTrajectory" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="138" y="21"/>
+		<location x="315" y="96"/>
 	</widget>
 	<widget field="Quickturn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="280"/>
@@ -38,40 +59,65 @@
 	</widget>
 </dashboard>
 <live-window>
+	<widget field="Intake" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="RollerMotor" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="16"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="ElbowMotor" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="62"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>305</width>
+		<height>115</height>
+	</widget>
 	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="UpperWheelSpeedSensor" type="Gear Tooth" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
 			<location x="6" y="16"/>
-			<height>26</height>
+			<height>20</height>
 			<width>293</width>
 		</widget>
 		<widget field="ShooterActuator" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="81" y="42"/>
+			<location x="81" y="36"/>
 			<height>23</height>
 			<width>143</width>
 		</widget>
 		<widget field="Hooper" type="Double Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
-			<location x="6" y="65"/>
+			<location x="6" y="59"/>
 			<height>20</height>
 			<width>293</width>
 		</widget>
 		<widget field="LowerWheelSpeedSensor" type="Gear Tooth" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="85"/>
-			<height>26</height>
+			<location x="6" y="79"/>
+			<height>20</height>
 			<width>293</width>
 		</widget>
 		<widget field="UpWheelDrive" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="111"/>
-			<height>52</height>
+			<location x="6" y="99"/>
+			<height>46</height>
 			<width>293</width>
 		</widget>
 		<widget field="LowerWheelDrive" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="163"/>
-			<height>52</height>
+			<location x="6" y="145"/>
+			<height>46</height>
 			<width>293</width>
 		</widget>
-		<location x="653" y="0"/>
+		<widget field="BallPresentSensor" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="191"/>
+			<height>20</height>
+			<width>293</width>
+		</widget>
+		<widget field="Hopper" type="Double Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="6" y="211"/>
+			<height>20</height>
+			<width>293</width>
+		</widget>
+		<location x="24" y="8"/>
 		<width>305</width>
-		<height>224</height>
+		<height>238</height>
 	</widget>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
