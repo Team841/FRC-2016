@@ -54,6 +54,6 @@ public class SMA {
      * Clears the moving average
      */
     public void clear(){
-    	values.clear();
+    	//values.clear();
     }
 }
