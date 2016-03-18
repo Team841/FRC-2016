@@ -1,0 +1,56 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="SetShooterSpeeds: ShootClose" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="237" y="222"/>
+	</widget>
+	<widget field="HopperPostion: Lift" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="125" y="0"/>
+	</widget>
+	<widget field="Drive" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="476"/>
+	</widget>
+	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="442"/>
+	</widget>
+	<widget field="EngageClimb" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="408"/>
+	</widget>
+	<widget field="setLowGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="374"/>
+	</widget>
+	<widget field="Actuate Shooter: ShootPosition" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="340"/>
+	</widget>
+	<widget field="FireSequence" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="320" y="176"/>
+	</widget>
+	<widget field="AutoCenter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="238"/>
+	</widget>
+	<widget field="SetShooterSpeeds: stop" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="265" y="258"/>
+	</widget>
+	<widget field="HopperPostion: Intake" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="170"/>
+	</widget>
+	<widget field="Actuate Shooter: RetractPosition" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="136"/>
+	</widget>
+	<widget field="stopQuickTurn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="102"/>
+	</widget>
+	<widget field="setHighGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="68"/>
+	</widget>
+	<widget field="FollowTrajectory" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="34"/>
+	</widget>
+	<widget field="Quickturn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="FireSequency"/>
+	<hidden field="Command Group 1"/>
+</xml>

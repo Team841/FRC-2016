@@ -50,6 +50,8 @@ public class RobotMap {
     public static GearTooth shooterLowerWheelSpeedSensor;
     public static SpeedController shooterLowerWheelDrive;
     public static SpeedController shooterUpWheelDrive;
+    public static DigitalInput intakeElbowZeroSensor;
+    public static Encoder intakeElbowQuadEncoder;
     public static SpeedController intakeElbowMotor;
     public static SpeedController intakeRollerMotor;
 
@@ -107,6 +109,13 @@ public class RobotMap {
         shooterUpWheelDrive = new VictorSP(4);
         LiveWindow.addActuator("Shooter", "UpWheelDrive", (VictorSP) shooterUpWheelDrive);
         
+        intakeElbowZeroSensor = new DigitalInput(9);
+        LiveWindow.addSensor("Intake", "ElbowZeroSensor", intakeElbowZeroSensor);
+        
+        intakeElbowQuadEncoder = new Encoder(7, 8, false, EncodingType.k4X);
+        LiveWindow.addSensor("Intake", "ElbowQuadEncoder", intakeElbowQuadEncoder);
+        intakeElbowQuadEncoder.setDistancePerPulse(1.0);
+        intakeElbowQuadEncoder.setPIDSourceType(PIDSourceType.kRate);
         intakeElbowMotor = new VictorSP(7);
         LiveWindow.addActuator("Intake", "ElbowMotor", (VictorSP) intakeElbowMotor);
         
