@@ -650,7 +650,7 @@ public class Drivetrain extends Subsystem {
 	 * This method takes in the left and right speeds and averages out to give a
 	 * total forward moving speed.
 	 * 
-	 * @return avarage speed of robot
+	 * @return average speed of robot
 	 */
 	public double getAverageSpeed() {
 		double left = 0;

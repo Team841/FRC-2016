@@ -12,6 +12,7 @@ package org.usfirst.frc841.Reptar.subsystems;
 
 import java.sql.Driver;
 
+import org.usfirst.frc841.Reptar.Robot;
 import org.usfirst.frc841.Reptar.RobotMap;
 import org.usfirst.frc841.Reptar.commands.*;
 import org.usfirst.frc841.lib.PID.PIDControlLoop;
@@ -79,7 +80,7 @@ public class Drivetrain extends Subsystem {
 
 	double timeStep = 0.1; // period of control loop on Rio, seconds
 
-	double robotTrackWidth = 2.167; // distance between left and right wheels,
+	double robotTrackWidth = 2; // distance between left and right wheels,
 									// feet
 
 	FalconPathPlanner path = new FalconPathPlanner(waypoints);
@@ -155,6 +156,7 @@ public class Drivetrain extends Subsystem {
 	double y[] = { 0, 0, 0 };
 
 	public Drivetrain() {
+		this.initEncoder();
 		// Calculate trajectory paths for Velocity, Acceleration, and distance
 		// over time
 		automode = new PathFollower(waypoints, totalTime, timeStep, robotTrackWidth);
@@ -244,19 +246,25 @@ public class Drivetrain extends Subsystem {
 			// System.out.println(drivetrain.automode.path.smoothLeftVelocity[cnt][1]+
 			// " " + drivetrain.path.smoothLeftVelocity[cnt][1]);
 			// cnt++;
+			
 			if (drivetrain.isPathFollowEnable) {
-				errorL = distleft[counter][1] - Math.abs(drivetrain.getLeftEncoderDistance());
-				errorR = distright[counter][1] - Math.abs(drivetrain.getRightEncoderDistance());
+				errorL = 0;
+				errorR = 0;
+				//errorL = distleft[counter][1] - Math.abs(drivetrain.getLeftEncoderDistance());
+				//errorR = distright[counter][1] - Math.abs(drivetrain.getRightEncoderDistance());
 
 				error_derivL = (errorL - error_lastL) / drivetrain.period;
 				error_derivR = (errorR - error_lastR) / drivetrain.period;
 
+				
 				drivetrain.SetLeftRight(
 						0.86 * 1 / 5.4 * drivetrain.path.smoothLeftVelocity[counter][1]
 								+ 1 / 3.5 * .55 * accleft[counter][1] + 2 / 3 * errorL,
 						-0.9 * 1 / 5.3 * drivetrain.path.smoothRightVelocity[counter][1]
 								- 1 / 3.5 * .6 * accright[counter][1] - 2 / 3 * errorR);
+				
 
+			
 				// implemented jerk and snap, need to figure out the attenuation
 				/*
 				 * drivetrain.SetLeftRight( 0.86 * 1/5.4 *
@@ -277,7 +285,8 @@ public class Drivetrain extends Subsystem {
 				 * drivetrain.rightAcc[counter]);
 				 */
 
-				// System.out.println(drivetrain.leftVelocity[counter]);
+				//System.out.println(drivetrain.leftVelocity[counter]);
+				
 				counter++;
 				error_lastL = errorL;
 				error_lastR = errorR;
@@ -304,6 +313,7 @@ public class Drivetrain extends Subsystem {
 	public void Drive(Joystick stick) {
 		// if (!this.EnablePID){
 		cheesyDrive(stick);
+		//this.postData();
 		// tankDrive(stick);
 		// }
 	}
@@ -321,7 +331,7 @@ public class Drivetrain extends Subsystem {
 	 * Shift drive to high gear and update memory
 	 */
 	public void SetHighGear() {
-		shiftingSolenoid.set(true);
+		shiftingSolenoid.set(false);
 		climbingSolenoid.set(false);
 		isHighGear = true;
 	}
@@ -330,7 +340,7 @@ public class Drivetrain extends Subsystem {
 	 * Shift drive train to low gear and update memory
 	 */
 	public void SetLowGear() {
-		shiftingSolenoid.set(false);
+		shiftingSolenoid.set(true);
 		climbingSolenoid.set(false);
 		isHighGear = false;
 
@@ -596,7 +606,7 @@ public class Drivetrain extends Subsystem {
 	private double MaxPeriod = 0.1;
 	private double MinRate = 10;
 	private int AverageSamples = 7;
-	private double wheelDiameter = 5;
+	private double wheelDiameter = 6;
 	private double DistancePerPulse = (Math.PI * wheelDiameter) / 255 / 12;
 
 	/**
@@ -650,7 +660,7 @@ public class Drivetrain extends Subsystem {
 	 * This method takes in the left and right speeds and averages out to give a
 	 * total forward moving speed.
 	 * 
-	 * @return avarage speed of robot
+	 * @return average speed of robot
 	 */
 	public double getAverageSpeed() {
 		double left = 0;
@@ -729,6 +739,15 @@ public class Drivetrain extends Subsystem {
 	public double getDistance() {
 		distance = table.getNumber("DEPTH", 0.0);
 		return distance;
+	}
+	public void postData() {
+		System.out.println(
+				this.getLeftSpeed() + "," +
+				this.getRightSpeed() + "," +
+				this.getLeftEncoderDistance() + "," +
+				this.getRightEncoderDistance() + "," +
+				Timer.getFPGATimestamp()
+				);
 	}
 
 }
