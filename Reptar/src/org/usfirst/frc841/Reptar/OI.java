@@ -91,6 +91,7 @@ public class OI {
 
 
         // SmartDashboard Buttons
+        SmartDashboard.putData("ClimbUp", new ClimbUp());
         SmartDashboard.putData("retractHook", new retractHook());
         SmartDashboard.putData("extendHook", new extendHook());
         SmartDashboard.putData("FireSequence", new FireSequence());

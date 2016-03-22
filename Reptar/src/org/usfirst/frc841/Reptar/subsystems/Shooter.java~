@@ -228,6 +228,8 @@ public class Shooter extends Subsystem {
 			SmartDashboard.putString("DB/String 3",
 					"Upper: " + Math.floor(this.subsystem.getUpperWheelSpeed() * 100 / 100.0) + " lower: "
 							+ Math.floor(this.subsystem.getLowerWheelSpeed() * 100 / 100.0));
+			//SmartDashboard.putNumber( "uSpeed", this.subsystem.getUpperWheelSpeed() );
+			//SmartDashboard.putNumber( "lSpeed" , this.subsystem.getLowerWheelSpeed() );
 		}
 	}
 

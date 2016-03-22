@@ -153,7 +153,7 @@ public class Intake extends Subsystem {
 		}
 		@Override
 		public void update() {
-			SmartDashboard.putString("DB/String 3",
+			SmartDashboard.putString("DB/String 2",
 					"Angle: " + Math.floor(this.subsystem.getCurrentAngle() * 100 / 100.0));
 			//SmartDashboard.putNumber ("Angle",this.subsystem.getCurrentAngle ());
 		}
