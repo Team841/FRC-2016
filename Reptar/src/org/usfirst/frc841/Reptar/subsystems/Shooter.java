@@ -83,6 +83,13 @@ public class Shooter extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
+	/**
+	 * Returns if the ball is inside the shooter
+	 * @return
+	 */
+	public boolean GetBallSensor(){
+		return !ballPresentSensor.get();
+	}
 
 	/**
 	 * This set hooper low

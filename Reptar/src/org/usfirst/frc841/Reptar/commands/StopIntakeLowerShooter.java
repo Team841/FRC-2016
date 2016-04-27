@@ -39,6 +39,7 @@ public class StopIntakeLowerShooter extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.shooter.setLowerWheelSpeed(0);
+    	Robot.shooter.setUpperWheelSpeed(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

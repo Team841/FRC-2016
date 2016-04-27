@@ -158,6 +158,7 @@ public class Drivetrain extends Subsystem {
 		@Override
 		public void update() {
 			SmartDashboard.putString("DB/String 1", "Castle Center: " + this.test.getCastleCenter());
+			SmartDashboard.putString("DB/String 0" , "Depth: " + this.test.getDistance());
 		}
 
 	}
@@ -326,7 +327,7 @@ public class Drivetrain extends Subsystem {
 	public void Drive(Joystick stick) {
 		// if (!this.EnablePID){
 		cheesyDrive(stick);
-		this.postData();
+		//this.postData();
 		// tankDrive(stick);
 		// }
 	}
@@ -620,7 +621,7 @@ public class Drivetrain extends Subsystem {
 	private double MinRate = 10;
 	private int AverageSamples = 7;
 	private double wheelDiameter = 6;
-	private double DistancePerPulse = (Math.PI * wheelDiameter) / 255 / 12;
+	private double DistancePerPulse = 1;
 
 	/**
 	 * Initialize the Quadrature encoder sensors for measurements.

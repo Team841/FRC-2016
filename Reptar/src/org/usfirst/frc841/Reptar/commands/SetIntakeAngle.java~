@@ -47,6 +47,7 @@ public class SetIntakeAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(2);
     	Robot.intake.intakecloop.updateSetpoint(m_Angle);
     	Robot.intake.intakecloop.enablePID();
     }
@@ -58,7 +59,7 @@ public class SetIntakeAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.intake.intakecloop.isDestinationReached();
+        return Robot.intake.intakecloop.isDestinationReached() || isTimedOut();
     }
 
     // Called once after isFinished returns true
