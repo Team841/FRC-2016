@@ -117,7 +117,7 @@ public class RobotMap {
         LiveWindow.addSensor("Intake", "Quadrature", intakeQuadrature);
         intakeQuadrature.setDistancePerPulse(1.0);
         intakeQuadrature.setPIDSourceType(PIDSourceType.kRate);
-        intakeElbowMotor = new VictorSP(7);
+        intakeElbowMotor = new VictorSP(8);
         LiveWindow.addActuator("Intake", "ElbowMotor", (VictorSP) intakeElbowMotor);
         
         intakeRollerMotor = new VictorSP(5);

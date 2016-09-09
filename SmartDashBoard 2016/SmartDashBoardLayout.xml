@@ -1,5 +1,17 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="lSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="293"/>
+	</widget>
+	<widget field="uSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="272"/>
+	</widget>
+	<widget field="DriveTrainClimbEngage" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="680"/>
+	</widget>
+	<widget field="DeployHook" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="646"/>
+	</widget>
 	<widget field="SetIntakeAngle: Retract" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="630" y="252"/>
 	</widget>
