@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="PhotonCannonOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="289" y="204"/>
+	</widget>
+	<widget field="PhotonCannonOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="289" y="136"/>
+	</widget>
 	<widget field="lSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="293"/>
 	</widget>
