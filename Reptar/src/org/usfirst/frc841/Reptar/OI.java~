@@ -92,7 +92,7 @@ public class OI {
         suckItIn.whenPressed(new SuckInBall());
         spit = new JoystickButton(coDriver, 5);
         spit.whenPressed(new SpitOut());
-        extendHookBtn = new JoystickButton(coDriver, 5);
+        extendHookBtn = new JoystickButton(coDriver, 9);
         extendHookBtn.whenPressed(new extendHook());
         driver = new Joystick(0);
         

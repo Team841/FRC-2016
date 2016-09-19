@@ -109,8 +109,8 @@ public class RobotMap {
         shooterLowerWheelDrive = new VictorSP(6);
         LiveWindow.addActuator("Shooter", "LowerWheelDrive", (VictorSP) shooterLowerWheelDrive);
         
-        shooterPhotonCannon = new VictorSP(7);
-        LiveWindow.addActuator("Shooter", "PhotonCannon", (VictorSP) shooterPhotonCannon);
+        shooterPhotonCannon = new Victor(7);
+        LiveWindow.addActuator("Shooter", "PhotonCannon", (Victor) shooterPhotonCannon);
         
         shooterUpWheelDrive = new VictorSP(4);
         LiveWindow.addActuator("Shooter", "UpWheelDrive", (VictorSP) shooterUpWheelDrive);

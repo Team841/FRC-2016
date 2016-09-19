@@ -241,7 +241,8 @@ public class Shooter extends Subsystem {
 		}
 	}
 
-	public void turnOnPhotonCannon(){	
+	public void turnOnPhotonCannon(){
+		 
 	}
 
 	public void turnOffPhotonCannon() {
