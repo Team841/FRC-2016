@@ -85,7 +85,7 @@ public class OI {
         shoot = new JoystickButton(coDriver, 2);
         shoot.whenPressed(new FireSequence());
         intakeBallPosition = new JoystickButton(coDriver, 3);
-        intakeBallPosition.whileHeld(new SetIntakeAngle(-84));
+        intakeBallPosition.whileHeld(new SetIntakeAngle(-96));
         intakeOutOfWay = new JoystickButton(coDriver, 4);
         intakeOutOfWay.whileHeld(new SetIntakeAngle(0));
         stocksucking = new JoystickButton(coDriver, 8);
