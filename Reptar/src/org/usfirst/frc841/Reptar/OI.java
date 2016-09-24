@@ -57,6 +57,8 @@ public class OI {
     public JoystickButton lowGear;
     public JoystickButton stopquickturn;
     public JoystickButton autoaim;
+    public JoystickButton cannOn;
+    public JoystickButton cannOff;
     public Joystick driver;
     public JoystickButton extendHookBtn;
     public JoystickButton spit;
@@ -79,11 +81,11 @@ public class OI {
         engageClimbBtn = new JoystickButton(coDriver, 7);
         engageClimbBtn.whileHeld(new DriveTrainClimbEngage());
         intakeFloor = new JoystickButton(coDriver, 1);
-        intakeFloor.whileHeld(new SetIntakeAngle(-125));
+        intakeFloor.whileHeld(new SetIntakeAngle(-108));
         shoot = new JoystickButton(coDriver, 2);
         shoot.whenPressed(new FireSequence());
         intakeBallPosition = new JoystickButton(coDriver, 3);
-        intakeBallPosition.whileHeld(new SetIntakeAngle(-90));
+        intakeBallPosition.whileHeld(new SetIntakeAngle(-96));
         intakeOutOfWay = new JoystickButton(coDriver, 4);
         intakeOutOfWay.whileHeld(new SetIntakeAngle(0));
         stocksucking = new JoystickButton(coDriver, 8);
@@ -96,6 +98,10 @@ public class OI {
         extendHookBtn.whenPressed(new extendHook());
         driver = new Joystick(0);
         
+        cannOff = new JoystickButton(driver, 5);
+        cannOff.whenReleased(new PhotonCannonOff());
+        cannOn = new JoystickButton(driver, 5);
+        cannOn.whileHeld(new PhotonCannonOn());
         autoaim = new JoystickButton(driver, 12);
         autoaim.whenPressed(new AutoCenter());
         stopquickturn = new JoystickButton(driver, 6);
@@ -138,8 +144,8 @@ public class OI {
         SmartDashboard.putData("AutoCenter", new AutoCenter());
         SmartDashboard.putData("EngageClimb", new EngageClimb());
         SmartDashboard.putData("SetIntakeAngle: Retract", new SetIntakeAngle(0));
-        SmartDashboard.putData("SetIntakeAngle: Intake", new SetIntakeAngle(-100));
-        SmartDashboard.putData("SetIntakeAngle: Ground", new SetIntakeAngle(-125));
+        SmartDashboard.putData("SetIntakeAngle: Intake", new SetIntakeAngle(-84));
+        SmartDashboard.putData("SetIntakeAngle: Ground", new SetIntakeAngle(-108));
         SmartDashboard.putData("IntakeBallLowShooter", new IntakeBallLowShooter());
         SmartDashboard.putData("StopIntakeLowerShooter", new StopIntakeLowerShooter());
         SmartDashboard.putData("DriveToCastle: shoot close", new DriveToCastle(50, 160));

@@ -44,7 +44,7 @@ public class FireSequence extends CommandGroup {
 		addSequential(new HopperPostion(false)); //Hopper set to low
 		addSequential(new ActuateShooter(true)); //Shooter oriented to shooting position
 		addSequential(new WaitCommand(.2)); // Wait for everything to settle
-		addSequential(new SetShooterSpeeds(30, 30)); // Set to 30ft/sec to shoot
+		addSequential(new SetShooterSpeeds(47, 30)); // Set to 30ft/sec to shoot
 		addSequential(new HopperPostion(true)); // Feed ball in the shooter
 		addSequential(new WaitCommand(0.5)); // wait for it to feed
 		addSequential(new ActuateShooter(false)); //bring shooter down to keep it compact

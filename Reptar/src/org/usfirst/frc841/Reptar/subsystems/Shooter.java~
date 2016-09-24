@@ -242,12 +242,12 @@ public class Shooter extends Subsystem {
 	}
 
 	public void turnOnPhotonCannon(){
-		 
+		photonCannon.set(1);
 	}
 
 	public void turnOffPhotonCannon() {
 		// TODO Auto-generated method stub
-		
+		photonCannon.set(0);
 	}
 	
 }
