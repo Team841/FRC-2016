@@ -81,11 +81,9 @@ public class OI {
         engageClimbBtn = new JoystickButton(coDriver, 7);
         engageClimbBtn.whileHeld(new DriveTrainClimbEngage());
         intakeFloor = new JoystickButton(coDriver, 1);
-        intakeFloor.whileHeld(new SetIntakeAngle(-108));
         shoot = new JoystickButton(coDriver, 2);
         shoot.whenPressed(new FireSequence());
         intakeBallPosition = new JoystickButton(coDriver, 3);
-        intakeBallPosition.whileHeld(new SetIntakeAngle(-84));
         intakeOutOfWay = new JoystickButton(coDriver, 4);
         intakeOutOfWay.whileHeld(new SetIntakeAngle(0));
         stocksucking = new JoystickButton(coDriver, 8);
