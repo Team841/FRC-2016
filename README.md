@@ -2,11 +2,11 @@
 FRC 2016
 ========
 
-This is the code for our robot dubbed Reptar
+This is the code for our robot named Apollo ( code named Reptar )
 
 <b>Special thanks to Team 254 for the cheesy drive code</b>
 
-![](Atlas.png)
+![](Apollo.jpg)
 
 _THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
